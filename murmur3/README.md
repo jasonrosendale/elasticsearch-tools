@@ -5,5 +5,5 @@ Assuming that your index has 70 shards and your document_id is "foobar123", you 
 ```
 es_hasher = EsMurmur3(70)
 es_hasher.hash("foobar123") # => 8
-``
+```
 
