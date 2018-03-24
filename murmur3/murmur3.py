@@ -22,21 +22,21 @@ class EsMurmur3:
       h1 = h1 * 5 + 0xe6546b64
 
       # tail
-      k1 = 0
+    k1 = 0
 
-      val = length & 0x03
-      if val == 3:
-          k1 = (ord(data[roundedEnd + 2]) & 0xff) << 16
-      if val in [2, 3]:
-          k1 |= (ord(data[roundedEnd + 1]) & 0xff) << 8
-      if val in [1, 2, 3]:
-          k1 |= ord(data[roundedEnd]) & 0xff
-          k1 *= c1
-          k1 = (k1 << 15) | ((k1 & 0xffffffff) >> 17)
-          k1 *= c2
-          h1 ^= k1
+    val = length & 0x03
+    if val == 3:
+        k1 = (ord(data[roundedEnd + 2]) & 0xff) << 16
+    if val in [2, 3]:
+        k1 |= (ord(data[roundedEnd + 1]) & 0xff) << 8
+    if val in [1, 2, 3]:
+        k1 |= ord(data[roundedEnd]) & 0xff
+        k1 *= c1
+        k1 = (k1 << 15) | ((k1 & 0xffffffff) >> 17)
+        k1 *= c2
+        h1 ^= k1
 
-      h1 ^= length
+    h1 ^= length
 
     h1 ^= ((h1 & 0xffffffff) >> 16)
     h1 *= 0x85ebca6b
